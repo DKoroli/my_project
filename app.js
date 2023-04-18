@@ -110,33 +110,69 @@ const res4 = processRequest(request.topic);
 
 console.log(res4);
 
-function addFragment() {
-  const build = document.getElementById("build");
-  const complaint = document.getElementById("complaint");
-  const sign = document.getElementById("sign");
-  build.addEventListener("change", (e) => {
-    const fragment = document.createDocumentFragment();
-    const div = document.createElement("div");
-    div.className = "selector";
-    const selector = document.createElement("select");
-    selector.className = "topics";
-    const option1 = document.createElement("option");
-    const option2 = document.createElement("option");
-    const option3 = document.createElement("option");
-    const option1Text = document.createTextNode("строительство парковки");
-    const option2Text = document.createTextNode("строительство ларька");
-    const option3Text = document.createTextNode("строительство многоэтажки");
-    option1.appendChild(option1Text);
-    option2.appendChild(option2Text);
-    option3.appendChild(option3Text);
-    selector.appendChild(option1);
-    selector.appendChild(option2);
-    selector.appendChild(option3);
-    div.appendChild(selector);
-    fragment.appendChild(div);
-    document.body.appendChild(fragment);
-  });
+// const build = document.getElementById("build");
+// const complaint = document.getElementById("complaint");
+// const sign = document.getElementById("sign");
+const select = document.getElementById("dep");
+select.addEventListener("change", (e) => {
+  console.log(e);
+  // if (e.value == build) {
+  //   const fragment = document.createDocumentFragment();
+  //   const div = document.createElement("div");
+  //   div.className = "selector";
+  //   const selector = document.createElement("select");
+  //   selector.className = "topics";
+  //   const option1 = document.createElement("option");
+  //   const option2 = document.createElement("option");
+  //   const option3 = document.createElement("option");
+  //   const option1Text = document.createTextNode("строительство парковки");
+  //   const option2Text = document.createTextNode("строительство ларька");
+  //   const option3Text = document.createTextNode("строительство многоэтажки");
+  //   option1.appendChild(option1Text);
+  //   option2.appendChild(option2Text);
+  //   option3.appendChild(option3Text);
+  //   selector.appendChild(option1);
+  //   selector.appendChild(option2);
+  //   selector.appendChild(option3);
+  //   div.appendChild(selector);
+  //   fragment.appendChild(div);
+  //   document.body.appendChild(fragment);
+  // } else if (e.value == complaint) {
+  //   const fragment = document.createDocumentFragment();
+  //   const div = document.createElement("div");
+  //   div.className = "selector";
+  //   const selector = document.createElement("select");
+  //   selector.className = "topics";
+  //   const option4 = document.createElement("option");
+  //   const option5 = document.createElement("option");
+  //   const option4Text = document.createTextNode("жалоба на соседа");
+  //   const option5Text = document.createTextNode("жалоба на полицию");
+  //   option4.appendChild(option4Text);
+  //   option5.appendChild(option5Text);
+  //   selector.appendChild(option4);
+  //   selector.appendChild(option5);
+  //   div.appendChild(selector);
+  //   fragment.appendChild(div);
+  //   document.body.appendChild(fragment);
+  // } else {
+  //   const fragment = document.createDocumentFragment();
+  //   const div = document.createElement("div");
+  //   div.className = "selector";
+  //   const selector = document.createElement("select");
+  //   selector.className = "topics";
+  //   const option6 = document.createElement("option");
+  //   const option6Text = document.createTextNode(
+  //     "разрешение на установку знака"
+  //   );
+  //   option6.appendChild(option6Text);
+  //   selector.appendChild(option6);
+  //   div.appendChild(selector);
+  //   fragment.appendChild(div);
+  //   document.body.appendChild(fragment);
+  // }
+});
 
+function addFragment() {
   // const fragment = document.createDocumentFragment();
   // const div = document.createElement("div");
   // div.className = "selector";
@@ -170,4 +206,4 @@ function addFragment() {
   // fragment.appendChild(div);
   // document.body.appendChild(fragment);
 }
-addFragment();
+// addFragment();
