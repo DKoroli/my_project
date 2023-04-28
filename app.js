@@ -1,25 +1,3 @@
-// 1) теперь запрос от пользователя будет не просто строкой, а объектом
-// request = {req: "жалоба на полицию", email: "user@email.com"}
-//
-// 2) sendEmail() теперь должна принимать еще и тест письма в параметры
-// sendEmail(emailAddress, text) - внутри будет писать на какой имейл отправка и какой там будет текст письма
-//
-// 3) функция processRequest() теперь принимает не строку как сейчас, а объект из пункта (1)
-//
-// 4) внутри функции processRequest() изменится отправка имейла - надо добавить текст в департамент, можно
-// что-то типа "получен запрос от пользователя с имейлом *таким-то*(ты его знаешь из запроса)"
-//
-// 5) внутри функции processRequest() добавится еще одна отправка имейла, пользователю
-// sendEmail("имейл пользовател", "ваш запрос получен и принят в обработку")
-// "Ваш запрос отправлен в Управление"
-// "Получено заявление по вопросу от пользователя"
-//
-// Итого: теперь будет две отправки письма - на почту департамента и пользователю который написал
-//
-// p.s. задачи выполняем: сначала (1), проверяем со мной
-// потом (2), (3), (4) - они связаны и как бы про одно и то же,
-// ну и потом (5)
-
 const config = {
   build: [
     "строительство парковки",
@@ -112,36 +90,14 @@ function processRequest(req) {
 }
 
 // всякий щит
-// const res = getDepartment(request.topic);
-// const res2 = getDocument("жалоба на полицию");
-// const res3 = getResponse("жалоба на полицию");
+
 const res4 = processRequest(request.topic);
 
 console.log(res4);
 
-// const build = document.getElementById("build");
-// const complaint = document.getElementById("complaint");
-// const sign = document.getElementById("sign");
 const select = document.getElementById("dep");
 
-// function selectChange(event) {
-//   console.log("another func ---", event.target.getAttribute("XXX"));
-// }
-
-// select.addEventListener("change", selectChange);
-
 select.addEventListener("change", (e) => {
-  // --------- |||||||| ----------
-  // --------- |||||||| ----------
-  // --------- |||||||| ----------
-
-  // если вэлью билд тогда добавим новый селект с билдой  addBuildDep();
-  // если вэлью жалобой тогда добавим новый селект с жалобой addComplaint()
-
-  // --------- |||||||| ----------
-  // --------- |||||||| ----------
-  // --------- |||||||| ----------
-
   if (e.target.value == "build") {
     addBuildDom();
   } else if (e.target.value == "complaint") {
@@ -150,6 +106,25 @@ select.addEventListener("change", (e) => {
     addSignDom();
   }
 });
+
+// for (let i = 0; i < config.build.length; i++) {
+//   let fragment = document.createDocumentFragment();
+//   let div = document.createElement("div");
+//   console.log("type of div ", typeof div);
+//   console.log("div = ", div);
+//   let paragraf = document.createElement("p");
+//   console.log("type of paragraf ", typeof paragraf);
+//   console.log("paragraf = ", paragraf);
+//   let text = config.build[i];
+//   console.log("type of text ", typeof text);
+//   console.log("text = ", text);
+//   paragraf.appendChild(text);
+//   div.appendChild(paragraf);
+//   fragment.appendChild(div);
+//   document.body.appendChild(fragment);
+
+//   console.log(i);
+// }
 
 function addBuildDom() {
   const fragment = document.createDocumentFragment();
@@ -176,7 +151,9 @@ function addBuildDom() {
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
+  console.log("type of function div ", typeof div);
 }
+
 
 function addComplaintDom() {
   const fragment = document.createDocumentFragment();
@@ -219,15 +196,3 @@ function addSignDom() {
   fragment.appendChild(div);
   document.body.appendChild(fragment);
 }
-
-// const input = document.getElementById("ttt");
-
-// input.addEventListener("focus", (event) => {
-//   console.log(event.target.value);
-//   console.log(input.value);
-// });
-// input.addEventListener("blur", () => {
-//   console.log("BLUR");
-// });
-
-// function addBuildDep() {}
