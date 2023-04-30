@@ -107,72 +107,60 @@ select.addEventListener("change", (e) => {
   }
 });
 
-// for (let i = 0; i < config.build.length; i++) {
-//   let fragment = document.createDocumentFragment();
-//   let div = document.createElement("div");
-//   console.log("type of div ", typeof div);
-//   console.log("div = ", div);
-//   let paragraf = document.createElement("p");
-//   console.log("type of paragraf ", typeof paragraf);
-//   console.log("paragraf = ", paragraf);
-//   let text = config.build[i];
-//   console.log("type of text ", typeof text);
-//   console.log("text = ", text);
-//   paragraf.appendChild(text);
-//   div.appendChild(paragraf);
-//   fragment.appendChild(div);
-//   document.body.appendChild(fragment);
+function addBuildSelector() {
+  const select = document.createElement("select");
+  select.className = "build";
+  for (let i = 0; i < config.build.length; i++) {
+    const option = document.createElement("option");
+    let text = config.build[i];
+    let str = document.createTextNode(text);
+    option.appendChild(str);
+    select.appendChild(option);
+  }
+  return select;
+}
 
-//   console.log(i);
-// }
+function addComSelector() {
+  const select = document.createElement("select");
+  select.className = "complaint";
+  for (let i = 0; i < config.complaint.length; i++) {
+    const option = document.createElement("option");
+    let text = config.complaint[i];
+    let str = document.createTextNode(text);
+    option.appendChild(str);
+    select.appendChild(option);
+  }
+  return select;
+}
+
+function addSignSelector() {
+  const select = document.createElement("select");
+  select.className = "sign";
+  for (let i = 0; i < config.sign.length; i++) {
+    const option = document.createElement("option");
+    let text = config.sign[i];
+    let str = document.createTextNode(text);
+    option.appendChild(str);
+    select.appendChild(option);
+  }
+  return select;
+}
 
 function addBuildDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.className = "selector";
-  const selector = document.createElement("select");
-  selector.className = "topics";
-  const option = document.createElement("option");
-  const option1 = document.createElement("option");
-  const option2 = document.createElement("option");
-  const option3 = document.createElement("option");
-  const optionText = document.createTextNode("--Выберите раздел--");
-  const option1Text = document.createTextNode("строительство парковки");
-  const option2Text = document.createTextNode("строительство ларька");
-  const option3Text = document.createTextNode("строительство многоэтажки");
-  option.appendChild(optionText);
-  option1.appendChild(option1Text);
-  option2.appendChild(option2Text);
-  option3.appendChild(option3Text);
-  selector.appendChild(option);
-  selector.appendChild(option1);
-  selector.appendChild(option2);
-  selector.appendChild(option3);
+  const selector = addBuildSelector();
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
-  console.log("type of function div ", typeof div);
 }
-
 
 function addComplaintDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.className = "selector";
-  const selector = document.createElement("select");
-  selector.className = "topics";
-  const option = document.createElement("option");
-  const option4 = document.createElement("option");
-  const option5 = document.createElement("option");
-  const optionText = document.createTextNode("--Выберите раздел--");
-  const option4Text = document.createTextNode("жалоба на соседа");
-  const option5Text = document.createTextNode("жалоба на полицию");
-  option.appendChild(optionText);
-  option4.appendChild(option4Text);
-  option5.appendChild(option5Text);
-  selector.appendChild(option);
-  selector.appendChild(option4);
-  selector.appendChild(option5);
+  const selector = addComSelector();
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
@@ -182,16 +170,7 @@ function addSignDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.className = "selector";
-  const selector = document.createElement("select");
-  selector.className = "topics";
-  const option = document.createElement("option");
-  const option6 = document.createElement("option");
-  const optionText = document.createTextNode("--Выберите раздел--");
-  const option6Text = document.createTextNode("разрешение на установку знака");
-  option.appendChild(optionText);
-  option6.appendChild(option6Text);
-  selector.appendChild(option);
-  selector.appendChild(option6);
+  const selector = addSignSelector();
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
