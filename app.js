@@ -98,6 +98,10 @@ console.log(res4);
 const select = document.getElementById("dep");
 
 select.addEventListener("change", (e) => {
+  const subCutDiv = document.getElementById("select_div");
+  if (subCutDiv) {
+    subCutDiv.remove();
+  }
   if (e.target.value == "build") {
     addBuildDom();
   } else if (e.target.value == "complaint") {
@@ -105,11 +109,24 @@ select.addEventListener("change", (e) => {
   } else {
     addSignDom();
   }
+  // здесь сделать ивентлистенер
+  const addedSel = document.getElementById('addedSel')
+  addedSel.addEventListener('change', (e) => {
+    
+  })
+  // внутри ивентлистенера добавить функцию addFormDom
 });
+
+// 1. добавить в новый селект id
+// 2. сделать функцию addFormDom
+// 3. проверить функцию
+// 4. добавить функцию в ивентлисенер
+// 5. оптимизировать код
+// 6. переход к серверной части
 
 function addBuildSelector() {
   const select = document.createElement("select");
-  select.className = "build";
+   select.id = "addedSel";
   for (let i = 0; i < config.build.length; i++) {
     const option = document.createElement("option");
     let text = config.build[i];
@@ -122,7 +139,7 @@ function addBuildSelector() {
 
 function addComSelector() {
   const select = document.createElement("select");
-  select.className = "complaint";
+  select.id = "addedSel";
   for (let i = 0; i < config.complaint.length; i++) {
     const option = document.createElement("option");
     let text = config.complaint[i];
@@ -135,7 +152,7 @@ function addComSelector() {
 
 function addSignSelector() {
   const select = document.createElement("select");
-  select.className = "sign";
+  select.id = "addedSel";
   for (let i = 0; i < config.sign.length; i++) {
     const option = document.createElement("option");
     let text = config.sign[i];
@@ -175,3 +192,37 @@ function addSignDom() {
   fragment.appendChild(div);
   document.body.appendChild(fragment);
 }
+
+function addFormDom() {
+  const fragment = document.createDocumentFragment();
+  const div = document.createElement("div");
+  div.id = "form_div";
+  div.className = "form";
+  const form = document.createElement("form");
+  const pName = document.createElement("p");
+  const pNameText = document.createTextNode("ФИО:");
+  const nameInput = document.createElement("input");
+  nameInput.type = "text";
+  const pAdress = document.createElement("p");
+  const pAdressText = document.createTextNode("Ваш адрес:");
+  const adressInput = document.createElement("input");
+  adressInput.type = "text";
+  const pFile = document.createElement("p");
+  const pFileText = document.createTextNode("Загрузите Ваш файл:");
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  pName.appendChild(pNameText);
+  pAdress.appendChild(pAdressText);
+  pFile.appendChild(pFileText);
+  form.appendChild(pName);
+  form.appendChild(nameInput);
+  form.appendChild(pAdress);
+  form.appendChild(adressInput);
+  form.appendChild(pFile);
+  form.appendChild(fileInput);
+  div.appendChild(form);
+  fragment.appendChild(div);
+  document.body.appendChild(fragment);
+}
+
+
