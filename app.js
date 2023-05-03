@@ -1,11 +1,12 @@
 const config = {
   build: [
+    "--Выберите раздел--",
     "строительство парковки",
     "строительство ларька",
     "строительство многоэтажки",
   ],
-  complaint: ["жалоба на соседа", "жалоба на полицию"],
-  sign: ["разрешение на установку знака"],
+  complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
+  sign: ["--Выберите раздел--", "разрешение на установку знака"],
 };
 
 // переменные
@@ -109,12 +110,20 @@ select.addEventListener("change", (e) => {
   } else {
     addSignDom();
   }
+  const form_div = document.getElementById("form_div");
+  if (form_div) {
+    form_div.remove();
+  }
   // здесь сделать ивентлистенер
-  const addedSel = document.getElementById('addedSel')
-  addedSel.addEventListener('change', (e) => {
-    
-  })
-  // внутри ивентлистенера добавить функцию addFormDom
+  const addedSel = document.getElementById("addedSel");
+  addedSel.addEventListener("change", (e) => {
+    const form_div = document.getElementById("form_div");
+    if (form_div) {
+      form_div.remove();
+    }
+    // внутри ивентлистенера добавить функцию addFormDom
+    addFormDom();
+  });
 });
 
 // 1. добавить в новый селект id
@@ -126,7 +135,7 @@ select.addEventListener("change", (e) => {
 
 function addBuildSelector() {
   const select = document.createElement("select");
-   select.id = "addedSel";
+  select.id = "addedSel";
   for (let i = 0; i < config.build.length; i++) {
     const option = document.createElement("option");
     let text = config.build[i];
@@ -166,7 +175,7 @@ function addSignSelector() {
 function addBuildDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
-  div.className = "selector";
+  div.id = "select_div";
   const selector = addBuildSelector();
   div.appendChild(selector);
   fragment.appendChild(div);
@@ -176,7 +185,7 @@ function addBuildDom() {
 function addComplaintDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
-  div.className = "selector";
+  div.id = "select_div";
   const selector = addComSelector();
   div.appendChild(selector);
   fragment.appendChild(div);
@@ -186,7 +195,7 @@ function addComplaintDom() {
 function addSignDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
-  div.className = "selector";
+  div.id = "select_div";
   const selector = addSignSelector();
   div.appendChild(selector);
   fragment.appendChild(div);
@@ -224,5 +233,3 @@ function addFormDom() {
   fragment.appendChild(div);
   document.body.appendChild(fragment);
 }
-
-
