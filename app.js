@@ -37,38 +37,12 @@ select.addEventListener("change", (e) => {
   });
 });
 
-function addSelectorForConstruction() {
+function addSelectForSubcat(arg) {
   const select = document.createElement("select");
   select.id = "addedSel";
-  for (let i = 0; i < applicationTypes.construction.length; i++) {
+  for (let i = 0; i < arg.length; i++) {
     const option = document.createElement("option");
-    let text = applicationTypes.construction[i];
-    let str = document.createTextNode(text);
-    option.appendChild(str);
-    select.appendChild(option);
-  }
-  return select;
-}
-
-function addSelectorForComplaint() {
-  const select = document.createElement("select");
-  select.id = "addedSel";
-  for (let i = 0; i < applicationTypes.complaint.length; i++) {
-    const option = document.createElement("option");
-    let text = applicationTypes.complaint[i];
-    let str = document.createTextNode(text);
-    option.appendChild(str);
-    select.appendChild(option);
-  }
-  return select;
-}
-
-function addSelectorForSign() {
-  const select = document.createElement("select");
-  select.id = "addedSel";
-  for (let i = 0; i < applicationTypes.sign.length; i++) {
-    const option = document.createElement("option");
-    let text = applicationTypes.sign[i];
+    let text = arg[i];
     let str = document.createTextNode(text);
     option.appendChild(str);
     select.appendChild(option);
@@ -80,7 +54,7 @@ function addConstructionDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.id = "select_div";
-  const selector = addSelectorForConstruction();
+  const selector = addSelectForSubcat(applicationTypes.construction);
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
@@ -90,7 +64,7 @@ function addComplaintDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.id = "select_div";
-  const selector = addSelectorForComplaint();
+  const selector = addSelectForSubcat(applicationTypes.complaint);
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
@@ -100,7 +74,7 @@ function addSignDom() {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.id = "select_div";
-  const selector = addSelectorForSign();
+  const selector = addSelectForSubcat(applicationTypes.sign);
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
