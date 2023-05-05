@@ -17,11 +17,11 @@ select.addEventListener("change", (e) => {
     subCutDiv.remove();
   }
   if (e.target.value == "construction") {
-    addConstructionDom();
+    addDomForSubcat(applicationTypes.construction);
   } else if (e.target.value == "complaint") {
-    addComplaintDom();
+    addDomForSubcat(applicationTypes.complaint);
   } else {
-    addSignDom();
+    addDomForSubcat(applicationTypes.sign);
   }
   const form_div = document.getElementById("form_div");
   if (form_div) {
@@ -50,31 +50,11 @@ function addSelectForSubcat(arg) {
   return select;
 }
 
-function addConstructionDom() {
+function addDomForSubcat(arr) {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.id = "select_div";
-  const selector = addSelectForSubcat(applicationTypes.construction);
-  div.appendChild(selector);
-  fragment.appendChild(div);
-  document.body.appendChild(fragment);
-}
-
-function addComplaintDom() {
-  const fragment = document.createDocumentFragment();
-  const div = document.createElement("div");
-  div.id = "select_div";
-  const selector = addSelectForSubcat(applicationTypes.complaint);
-  div.appendChild(selector);
-  fragment.appendChild(div);
-  document.body.appendChild(fragment);
-}
-
-function addSignDom() {
-  const fragment = document.createDocumentFragment();
-  const div = document.createElement("div");
-  div.id = "select_div";
-  const selector = addSelectForSubcat(applicationTypes.sign);
+  const selector = addSelectForSubcat(arr);
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
@@ -85,21 +65,15 @@ function addFormDom() {
   const div = document.createElement("div");
   div.id = "form_div";
   const form = document.createElement("form");
-  const pName = document.createElement("p");
-  const pNameText = document.createTextNode("ФИО:");
+  const pName = addDomForForm("ФИО:");
   const nameInput = document.createElement("input");
   nameInput.type = "text";
-  const pAdress = document.createElement("p");
-  const pAdressText = document.createTextNode("Ваш адрес:");
+  const pAdress = addDomForForm("Ваш адрес");
   const adressInput = document.createElement("input");
   adressInput.type = "text";
-  const pFile = document.createElement("p");
-  const pFileText = document.createTextNode("Загрузите Ваш файл:");
+  const pFile = addDomForForm("Загрузите Ваш файл:");
   const fileInput = document.createElement("input");
   fileInput.type = "file";
-  pName.appendChild(pNameText);
-  pAdress.appendChild(pAdressText);
-  pFile.appendChild(pFileText);
   form.appendChild(pName);
   form.appendChild(nameInput);
   form.appendChild(pAdress);
@@ -109,4 +83,11 @@ function addFormDom() {
   div.appendChild(form);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
+}
+
+function addDomForForm(arg1) {
+  const paragraf = document.createElement("p");
+  const pNameText = document.createTextNode(arg1);
+  paragraf.appendChild(pNameText);
+  return paragraf;
 }
