@@ -1,13 +1,13 @@
-const applicationTypes = {
-  construction: [
-    "--Выберите раздел--",
-    "строительство парковки",
-    "строительство ларька",
-    "строительство многоэтажки",
-  ],
-  complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
-  sign: ["--Выберите раздел--", "разрешение на установку знака"],
-};
+// const applicationTypes = {
+//   construction: [
+//     "--Выберите раздел--",
+//     "строительство парковки",
+//     "строительство ларька",
+//     "строительство многоэтажки",
+//   ],
+//   complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
+//   sign: ["--Выберите раздел--", "разрешение на установку знака"],
+// };
 
 const select = document.getElementById("dep");
 
@@ -17,11 +17,25 @@ select.addEventListener("change", (e) => {
     subCutDiv.remove();
   }
   if (e.target.value == "construction") {
-    addDomForSubcat(applicationTypes.construction);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/construction', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
   } else if (e.target.value == "complaint") {
-    addDomForSubcat(applicationTypes.complaint);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/complaint', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
+  } else if (e.target.value == "sign") {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/sign', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
   } else {
-    addDomForSubcat(applicationTypes.sign);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/trade', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
   }
   const form_div = document.getElementById("form_div");
   if (form_div) {
@@ -87,3 +101,15 @@ function addDomForForm(arg1, arg2) {
   input.type = arg2;
   return { text: paragraf, input: input };
 }
+
+// --- call to backend ---
+
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://127.0.0.1:8080/sign', false);
+
+xhr.send()
+
+console.log('xhr.body', xhr.body)
+console.log('xhr.getAllResponseHeaders()', xhr.getAllResponseHeaders())
+console.log('xhr.response', xhr.response)
+console.log('xhr', xhr)
