@@ -1,13 +1,13 @@
-const applicationTypes = {
-  construction: [
-    "--Выберите раздел--",
-    "строительство парковки",
-    "строительство ларька",
-    "строительство многоэтажки",
-  ],
-  complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
-  sign: ["--Выберите раздел--", "разрешение на установку знака"],
-};
+// const applicationTypes = {
+//   construction: [
+//     "--Выберите раздел--",
+//     "строительство парковки",
+//     "строительство ларька",
+//     "строительство многоэтажки",
+//   ],
+//   complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
+//   sign: ["--Выберите раздел--", "разрешение на установку знака"],
+// };
 
 const select = document.getElementById("dep");
 
@@ -17,11 +17,25 @@ select.addEventListener("change", (e) => {
     subCutDiv.remove();
   }
   if (e.target.value == "construction") {
-    addDomForSubcat(applicationTypes.construction);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/construction', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
   } else if (e.target.value == "complaint") {
-    addDomForSubcat(applicationTypes.complaint);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/complaint', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
+  } else if (e.target.value == "sign") {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/sign', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
   } else {
-    addDomForSubcat(applicationTypes.sign);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://127.0.0.1:8080/trade', false);
+    xhr.send()
+    addDomForSubcat(JSON.parse(xhr.response));
   }
   const form_div = document.getElementById("form_div");
   if (form_div) {
@@ -65,29 +79,37 @@ function addFormDom() {
   const div = document.createElement("div");
   div.id = "form_div";
   const form = document.createElement("form");
-  const pName = addDomForForm("ФИО:");
-  const nameInput = document.createElement("input");
-  nameInput.type = "text";
-  const pAdress = addDomForForm("Ваш адрес");
-  const adressInput = document.createElement("input");
-  adressInput.type = "text";
-  const pFile = addDomForForm("Загрузите Ваш файл:");
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  form.appendChild(pName);
-  form.appendChild(nameInput);
-  form.appendChild(pAdress);
-  form.appendChild(adressInput);
-  form.appendChild(pFile);
-  form.appendChild(fileInput);
+  const pName = addDomForForm("ФИО:", "text");
+  const pAdress = addDomForForm("Ваш адрес", "text");
+  const pFile = addDomForForm("Загрузите Ваш файл:", "file");
+  form.appendChild(pName.text);
+  form.appendChild(pName.input);
+  form.appendChild(pAdress.text);
+  form.appendChild(pAdress.input);
+  form.appendChild(pFile.text);
+  form.appendChild(pFile.input);
   div.appendChild(form);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
 }
 
-function addDomForForm(arg1) {
+function addDomForForm(arg1, arg2) {
   const paragraf = document.createElement("p");
   const pNameText = document.createTextNode(arg1);
   paragraf.appendChild(pNameText);
-  return paragraf;
+  const input = document.createElement("input");
+  input.type = arg2;
+  return { text: paragraf, input: input };
 }
+
+// --- call to backend ---
+
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://127.0.0.1:8080/sign', false);
+
+xhr.send()
+
+console.log('xhr.body', xhr.body)
+console.log('xhr.getAllResponseHeaders()', xhr.getAllResponseHeaders())
+console.log('xhr.response', xhr.response)
+console.log('xhr', xhr)
