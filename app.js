@@ -65,29 +65,25 @@ function addFormDom() {
   const div = document.createElement("div");
   div.id = "form_div";
   const form = document.createElement("form");
-  const pName = addDomForForm("ФИО:");
-  const nameInput = document.createElement("input");
-  nameInput.type = "text";
-  const pAdress = addDomForForm("Ваш адрес");
-  const adressInput = document.createElement("input");
-  adressInput.type = "text";
-  const pFile = addDomForForm("Загрузите Ваш файл:");
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  form.appendChild(pName);
-  form.appendChild(nameInput);
-  form.appendChild(pAdress);
-  form.appendChild(adressInput);
-  form.appendChild(pFile);
-  form.appendChild(fileInput);
+  const pName = addDomForForm("ФИО:", "text");
+  const pAdress = addDomForForm("Ваш адрес", "text");
+  const pFile = addDomForForm("Загрузите Ваш файл:", "file");
+  form.appendChild(pName.text);
+  form.appendChild(pName.input);
+  form.appendChild(pAdress.text);
+  form.appendChild(pAdress.input);
+  form.appendChild(pFile.text);
+  form.appendChild(pFile.input);
   div.appendChild(form);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
 }
 
-function addDomForForm(arg1) {
+function addDomForForm(arg1, arg2) {
   const paragraf = document.createElement("p");
   const pNameText = document.createTextNode(arg1);
   paragraf.appendChild(pNameText);
-  return paragraf;
+  const input = document.createElement("input");
+  input.type = arg2;
+  return { text: paragraf, input: input };
 }
