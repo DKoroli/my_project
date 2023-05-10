@@ -68,6 +68,7 @@ function addSelectForSubcat(arg) {
   select.id = "addedSel";
   for (let i = 0; i < arg.length; i++) {
     const option = document.createElement("option");
+    option.value
     let text = arg[i];
     let str = document.createTextNode(text);
     option.appendChild(str);
@@ -81,6 +82,15 @@ function addDomForSubcat(arr) {
   const div = document.createElement("div");
   div.id = "select_div";
   const selector = addSelectForSubcat(arr);
+  // if (e.target.value == "construction") {
+  //   selector.id = 'subconstr'
+  // } else if (e.target.value == "complaint") {
+  //   selector.id = 'subcompl'
+  // } else if (e.target.value == "sign") {
+  //   selector.id = 'subsign'
+  // } else {
+  //   selector.id = 'subtrade'
+  // }
   div.appendChild(selector);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
