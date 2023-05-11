@@ -12,6 +12,10 @@ const applicationTypes = {
     trade: ["--Выберите раздел--", "продажа пирожков", "продажа цветов", "продажа игрушек", "продажа продуктов"],
   };
 
+  const formTypes = {
+    
+  }
+
 console.log("starting server...")
 const server = http.createServer(handler);
 
