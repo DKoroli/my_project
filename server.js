@@ -58,37 +58,39 @@ function handler(req, res) {
     "Access-Control-Allow-Origin": "*",
   });
 
+  let response = {};
+
   if (req.url == "/construction") {
-    const response = {
+    response = {
       options: applicationTypes.construction,
       form: serverFormS.construction,
     };
     res.write(JSON.stringify(response));
   } else if (req.url == "/complaint") {
-    const response = {
+    response = {
       options: applicationTypes.complaint,
       form: serverFormS.complaint,
     };
     res.write(JSON.stringify(response));
   } else if (req.url == "/sign") {
-    const response = {
+    response = {
       options: applicationTypes.sign,
       form: serverFormS.sign,
     };
     res.write(JSON.stringify(response));
   } else if (req.url == "/trade") {
-    const response = {
+    response = {
       options: applicationTypes.trade,
       form: serverFormS.trade,
     };
     res.write(JSON.stringify(response));
   } else {
-    const response = { status: "error", message: "NOT FOUND" };
+    response = { status: "error", message: "NOT FOUND" };
     res.write(JSON.stringify(response));
   }
+  console.log(JSON.stringify(response));
   
   res.end();
 }
 
-console.log(response);
 console.log("in the end");

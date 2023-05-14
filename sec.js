@@ -24,28 +24,30 @@ select.addEventListener("change", (e) => {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/construction", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response));
-    formData = JSON.parse(xhr.response.form);
-    console.log(formData);
-    console.log(xmr.response);
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   } else if (e.target.value == "complaint") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/complaint", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response.options));
-    formData = JSON.parse(xhr.response.form);
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   } else if (e.target.value == "sign") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/sign", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response.options));
-    formData = JSON.parse(xhr.response.form);
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   } else {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/trade", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response.options));
-    formData = JSON.parse(xhr.response.form);
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   }
   const form_div = document.getElementById("form_div");
   if (form_div) {
