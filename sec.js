@@ -1,17 +1,3 @@
-// const serverForm = [
-//   { text: "ФИО", type: "text" },
-//   { text: "Адрес стройки", type: "text" },
-//   { text: "Загрузите Ваш файл", type: "file" },
-// ];
-
-// const serverFormS = {
-//   construction: [
-//     { text: "ФИО", type: "text" },
-//     { text: "Адрес стройки", type: "text" },
-//     { text: "Загрузите Ваш файл", type: "file" },
-//   ],
-// };
-
 const select = document.getElementById("dep");
 
 select.addEventListener("change", (e) => {
@@ -117,7 +103,3 @@ xhr.open("GET", "http://127.0.0.1:8080/sign", false);
 
 xhr.send();
 
-console.log("xhr.body", xhr.body);
-console.log("xhr.getAllResponseHeaders()", xhr.getAllResponseHeaders());
-console.log("xhr.response", xhr.response);
-console.log("xhr", xhr);

@@ -1,26 +1,3 @@
-const formTypes = {
-  construction: {
-    name: "ФИО",
-    adress: "Адрес стройки",
-    inputType: ["text", "file"],
-  },
-  complaint: {
-    name: "ФИО",
-    adress: "Адрес жалобы",
-    inputType: ["text", "file"],
-  },
-  sign: {
-    name: "ФИО",
-    adress: "Адрес установки знака",
-    inputType: ["text", "file"],
-  },
-  trade: {
-    name: "ФИО",
-    adress: "Адрес места торговли",
-    inputType: ["text", "file"],
-  },
-};
-
 const select = document.getElementById("dep");
 
 select.addEventListener("change", (e) => {
@@ -28,26 +5,35 @@ select.addEventListener("change", (e) => {
   if (subCutDiv) {
     subCutDiv.remove();
   }
+  let formData;
   if (e.target.value == "construction") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/construction", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response));
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   } else if (e.target.value == "complaint") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/complaint", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response));
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   } else if (e.target.value == "sign") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/sign", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response));
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   } else {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/trade", false);
     xhr.send();
-    addDomForSubcat(JSON.parse(xhr.response));
+    const jsonParsed = JSON.parse(xhr.response);
+    addDomForSubcat(jsonParsed.options);
+    formData = jsonParsed.form;
   }
   const form_div = document.getElementById("form_div");
   if (form_div) {
@@ -59,7 +45,7 @@ select.addEventListener("change", (e) => {
     if (form_div) {
       form_div.remove();
     }
-    addFormDom();
+    newFormDom(formData);
   });
 });
 
@@ -86,26 +72,22 @@ function addDomForSubcat(arr) {
   document.body.appendChild(fragment);
 }
 
-function addFormDom() {
+function newFormDom(arr) {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.id = "form_div";
   const form = document.createElement("form");
-  const pName = addDomForForm("ФИО:", "text");
-  const pAdress = addDomForForm("Ваш адрес", "text");
-  const pFile = addDomForForm("Загрузите Ваш файл:", "file");
-  form.appendChild(pName.text);
-  form.appendChild(pName.input);
-  form.appendChild(pAdress.text);
-  form.appendChild(pAdress.input);
-  form.appendChild(pFile.text);
-  form.appendChild(pFile.input);
+  for (i = 0; i < arr.length; i++) {
+    const result = createFormRow(arr[i].text, arr[i].type);
+    form.appendChild(result.text);
+    form.appendChild(result.input);
+  }
   div.appendChild(form);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
 }
 
-function addDomForForm(arg1, arg2) {
+function createFormRow(arg1, arg2) {
   const paragraf = document.createElement("p");
   const pNameText = document.createTextNode(arg1);
   paragraf.appendChild(pNameText);
@@ -121,7 +103,3 @@ xhr.open("GET", "http://127.0.0.1:8080/sign", false);
 
 xhr.send();
 
-console.log("xhr.body", xhr.body);
-console.log("xhr.getAllResponseHeaders()", xhr.getAllResponseHeaders());
-console.log("xhr.response", xhr.response);
-console.log("xhr", xhr);
