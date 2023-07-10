@@ -98,8 +98,3 @@ function createFormRow(arg1, arg2) {
 
 // --- call to backend ---
 
-const xhr = new XMLHttpRequest();
-xhr.open("GET", "http://127.0.0.1:8080/sign", false);
-
-xhr.send();
-
