@@ -1,7 +1,7 @@
 var http = require("http");
 
 const applicationTypes = {
-  construction: ["--Выберите раздел--", "Проектирование", "Строительство"],
+  construction: [{text: "--Выберите раздел--", value: "empty"}, {text: "Проектирование", value: "projection"}, {text: "Строительство", value: "construct"}],
   complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
   sign: ["--Выберите раздел--", "разрешение на установку знака"],
   trade: [
@@ -133,10 +133,7 @@ function handler(req, res) {
   console.log("URL:", req.url);
 
   if (req.url == "/construction") {
-    response = {
-      options: applicationTypes.construction,
-      form: serverFormS.construction,
-    };
+    response = applicationTypes.construction
     res.write(JSON.stringify(response));
   } else if (req.url == "/complaint") {
     response = {
