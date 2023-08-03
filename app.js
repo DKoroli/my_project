@@ -11,7 +11,7 @@ select.addEventListener("change", (e) => {
     xhr.open("GET", "http://127.0.0.1:8080/construction", false);
     xhr.send();
     const jsonParsed = JSON.parse(xhr.response);
-    addDomForSubcat(jsonParsed.options);
+    addDomForSubcat(jsonParsed);
     formData = jsonParsed.form;
   } else if (e.target.value == "complaint") {
     const xhr = new XMLHttpRequest();
@@ -54,7 +54,8 @@ function addSelectForSubcat(arg) {
   select.id = "addedSel";
   for (let i = 0; i < arg.length; i++) {
     const option = document.createElement("option");
-    let text = arg[i];
+    option.value = arg[i].value
+    let text = arg[i].text;
     let str = document.createTextNode(text);
     option.appendChild(str);
     select.appendChild(option);
