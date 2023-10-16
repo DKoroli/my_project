@@ -1,7 +1,11 @@
 var http = require("http");
 
 const applicationTypes = {
-  construction: [{text: "--Выберите раздел--", value: "empty"}, {text: "Проектирование", value: "projection"}, {text: "Строительство", value: "construct"}],
+  construction: [
+    { text: "--Выберите раздел--", value: "empty" },
+    { text: "Проектирование", value: "projection" },
+    { text: "Строительство", value: "construct" },
+  ],
   complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
   sign: ["--Выберите раздел--", "разрешение на установку знака"],
   trade: [
@@ -133,7 +137,7 @@ function handler(req, res) {
   console.log("URL:", req.url);
 
   if (req.url == "/construction") {
-    response = applicationTypes.construction
+    response = applicationTypes.construction;
     res.write(JSON.stringify(response));
   } else if (req.url == "/complaint") {
     response = {
@@ -152,6 +156,12 @@ function handler(req, res) {
       options: applicationTypes.trade,
       form: serverFormS.trade,
     };
+    res.write(JSON.stringify(response));
+  } else if (req.url == "/construction/projection") {
+    response = serverFormS.construction.planningPermission;
+    res.write(JSON.stringify(response));
+  } else if (req.url == "/construction/construct") {
+    response = serverFormS.construction.constructionPermission;
     res.write(JSON.stringify(response));
   } else {
     response = { status: "error", message: "NOT FOUND" };

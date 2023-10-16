@@ -45,7 +45,20 @@ select.addEventListener("change", (e) => {
     if (form_div) {
       form_div.remove();
     }
-    newFormDom(formData);
+    if (e.target.value == "projection") {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://127.0.0.1:8080/construction/projection", false);
+      xhr.send();
+      const jsonParsed = JSON.parse(xhr.response);
+      console.log(jsonParsed);
+      newFormDom(jsonParsed);
+    } else if (e.target.value == "construct") {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://127.0.0.1:8080/construction/construct", false);
+      xhr.send();
+      const jsonParsed = JSON.parse(xhr.response);
+      newFormDom(jsonParsed);
+    }
   });
 });
 
@@ -54,7 +67,7 @@ function addSelectForSubcat(arg) {
   select.id = "addedSel";
   for (let i = 0; i < arg.length; i++) {
     const option = document.createElement("option");
-    option.value = arg[i].value
+    option.value = arg[i].value;
     let text = arg[i].text;
     let str = document.createTextNode(text);
     option.appendChild(str);
@@ -98,4 +111,3 @@ function createFormRow(arg1, arg2) {
 }
 
 // --- call to backend ---
-
