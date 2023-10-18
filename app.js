@@ -45,20 +45,31 @@ select.addEventListener("change", (e) => {
     if (form_div) {
       form_div.remove();
     }
+    const jsonParsed = 
     if (e.target.value == "projection") {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", "http://127.0.0.1:8080/construction/projection", false);
       xhr.send();
-      const jsonParsed = JSON.parse(xhr.response);
+      jsonParsed = JSON.parse(xhr.response);
       console.log(jsonParsed);
       newFormDom(jsonParsed);
     } else if (e.target.value == "construct") {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", "http://127.0.0.1:8080/construction/construct", false);
       xhr.send();
-      const jsonParsed = JSON.parse(xhr.response);
+      jsonParsed = JSON.parse(xhr.response);
+      console.log(jsonParsed);
       newFormDom(jsonParsed);
     }
+    const button = document.getElementById("btnSend");
+    button.addEventListener("click", () => {
+      for (let i = 0; i < jsonParsed.length; i++) {
+        const jsonIdValue = jsonParsed[i].id.value;
+        let arrIdValue = [];
+        arrIdValue += jsonIdValue + ", ";
+      }
+      console.log(arrIdValue);
+    });
   });
 });
 
@@ -90,23 +101,29 @@ function newFormDom(arr) {
   const fragment = document.createDocumentFragment();
   const div = document.createElement("div");
   div.id = "form_div";
+  const btn = document.createElement("button");
+  btn.id = "btnSend";
+  const btnText = document.createTextNode("Отправить");
   const form = document.createElement("form");
   for (i = 0; i < arr.length; i++) {
-    const result = createFormRow(arr[i].text, arr[i].type);
+    const result = createFormRow(arr[i].text, arr[i].type, arr[i].id);
     form.appendChild(result.text);
     form.appendChild(result.input);
   }
   div.appendChild(form);
+  btn.appendChild(btnText);
+  div.appendChild(btn);
   fragment.appendChild(div);
   document.body.appendChild(fragment);
 }
 
-function createFormRow(arg1, arg2) {
+function createFormRow(text, type, id) {
   const paragraf = document.createElement("p");
-  const pNameText = document.createTextNode(arg1);
+  const pNameText = document.createTextNode(text);
   paragraf.appendChild(pNameText);
   const input = document.createElement("input");
-  input.type = arg2;
+  input.type = type;
+  input.id = id;
   return { text: paragraf, input: input };
 }
 
