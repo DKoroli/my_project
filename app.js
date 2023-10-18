@@ -63,6 +63,7 @@ select.addEventListener("change", (e) => {
     }
     let arrId = [];
     let arrIdValue = [];
+    let idWithValues = {};
     const button = document.getElementById("btnSend");
     button.addEventListener("click", () => {
       for (let i = 0; i < jsonParsed.length; i++) {
@@ -70,7 +71,9 @@ select.addEventListener("change", (e) => {
         arrId.push(jsonId);
         const inputById = document.getElementById(arrId[i]);
         arrIdValue.push(inputById.value);
+        idWithValues[arrId[i]] = arrIdValue[i];
       }
+      console.log(idWithValues);
       console.log(arrId);
       console.log(typeof arrId);
       console.log(arrIdValue);
