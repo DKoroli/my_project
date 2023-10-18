@@ -68,14 +68,15 @@ select.addEventListener("change", (e) => {
       for (let i = 0; i < jsonParsed.length; i++) {
         const jsonId = jsonParsed[i].id;
         arrId.push(jsonId);
-        // for (let i = 0; i < arrId.length; i++) {
-        //   arrIdValue.push(arrId[i].value);
-        // }
+        for (let i = 0; i < arrId.length; i++) {
+          const inputById = document.getElementById(arrId[i]);
+          arrIdValue.push(inputById.value);
+        }
       }
 
       console.log(arrId);
-      // git 
       console.log(typeof arrId);
+      console.log(arrIdValue);
     });
   });
 });
