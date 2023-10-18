@@ -45,7 +45,7 @@ select.addEventListener("change", (e) => {
     if (form_div) {
       form_div.remove();
     }
-    const jsonParsed = 
+    let jsonParsed = [];
     if (e.target.value == "projection") {
       const xhr = new XMLHttpRequest();
       xhr.open("GET", "http://127.0.0.1:8080/construction/projection", false);
@@ -61,14 +61,21 @@ select.addEventListener("change", (e) => {
       console.log(jsonParsed);
       newFormDom(jsonParsed);
     }
+    let arrId = [];
+    let arrIdValue = [];
     const button = document.getElementById("btnSend");
     button.addEventListener("click", () => {
       for (let i = 0; i < jsonParsed.length; i++) {
-        const jsonIdValue = jsonParsed[i].id.value;
-        let arrIdValue = [];
-        arrIdValue += jsonIdValue + ", ";
+        const jsonId = jsonParsed[i].id;
+        arrId.push(jsonId);
+        // for (let i = 0; i < arrId.length; i++) {
+        //   arrIdValue.push(arrId[i].value);
+        // }
       }
-      console.log(arrIdValue);
+
+      console.log(arrId);
+      // git 
+      console.log(typeof arrId);
     });
   });
 });
