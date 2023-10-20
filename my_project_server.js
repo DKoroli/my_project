@@ -30,13 +30,18 @@ const serverFormS = {
       { text: "фдрес эл. почты", type: "text", id: "mail" },
       {
         text: "для проектирования на объект недвижимости/участок с кадастровым номером",
-        type: "text", id: "cadNum"
+        type: "text",
+        id: "cadNum",
       },
       { text: "расположенный в муниципии", type: "text", id: "cadMun" },
       { text: "улица", type: "text", id: "cadStreet" },
       { text: "№", type: "text", id: "cadStrNum" },
       { text: "квартира", type: "text", id: "cadFlat" },
-      { text: "сертификат необходим для проектирования", type: "text", id: "obj" },
+      {
+        text: "сертификат необходим для проектирования",
+        type: "text",
+        id: "obj",
+      },
       { text: "площадь объекта на проектирование", type: "text", id: "area" },
       {
         text: "Копия удостоверения личности (физические лица) или свидетельство о регистрации (юридические лица)",
@@ -57,13 +62,18 @@ const serverFormS = {
       { text: "адрес эл. почты", type: "text", id: "email" },
       {
         text: "разрешение на строительство для объекта недвижимости/участка с кадастровым номером",
-        type: "text", id: "cadNumber"
+        type: "text",
+        id: "cadNumber",
       },
       { text: "расположенный в муниципии", type: "text", id: "cadMun" },
       { text: "улица", type: "text", id: "cadStreet" },
       { text: "№", type: "text", id: "cadStrNum" },
       { text: "квартира", type: "text", id: "cadFlat" },
-      { text: "разрешение на строительство необходимо для", type: "text", id: "obj" },
+      {
+        text: "разрешение на строительство необходимо для",
+        type: "text",
+        id: "obj",
+      },
       {
         text: "Копия удостоверения личности (физические лица) или свидетельство о регистрации (юридические лица);",
         type: "file",
@@ -118,6 +128,8 @@ const serverFormS = {
   ],
 };
 
+let arrForPDF = [];
+
 console.log("starting server...");
 const server = http.createServer(handler);
 
@@ -162,6 +174,11 @@ function handler(req, res) {
     res.write(JSON.stringify(response));
   } else if (req.url == "/construction/construct") {
     response = serverFormS.construction.constructionPermission;
+    res.write(JSON.stringify(response));
+  } else if (req.url == "/sendvalues") {
+    const arrResponse = JSON.parse(idWithValues);
+    arrForPDF = arrResponse;
+    response = "Ваша заявка принята";
     res.write(JSON.stringify(response));
   } else {
     response = { status: "error", message: "NOT FOUND" };

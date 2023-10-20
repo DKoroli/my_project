@@ -78,6 +78,10 @@ select.addEventListener("change", (e) => {
       console.log(typeof arrId);
       console.log(arrIdValue);
       console.log(typeof arrIdValue);
+      const response = JSON.response;
+      sendIdValues(idWithValues, (response) => {
+        alert(response);
+      });
     });
   });
 });
@@ -134,6 +138,17 @@ function createFormRow(text, type, id) {
   input.type = type;
   input.id = id;
   return { text: paragraf, input: input };
+}
+
+function sendIdValues(body, callback) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:8080/sendvalues", false);
+  xhr.addEventListener("load", () => {
+    const response = JSON.parse(xhr.response);
+    callback(response);
+  });
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  xhr.send(JSON.stringify(body));
 }
 
 // --- call to backend ---
