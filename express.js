@@ -1,7 +1,7 @@
 const express = require("express");
+var cors = require("cors");
 const app = express();
-const port = 8080;
-
+// app.use(cors())
 const applicationTypes = {
   construction: [
     { text: "--Выберите раздел--", value: "empty" },
@@ -130,54 +130,28 @@ const serverFormS = {
   ],
 };
 
-app.get("/", (req, res) => {
-  res.writeHead(200, {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-  });
-  let response = {};
-  if (req.url == "/construction") {
-    response = applicationTypes.construction;
-    res.write(JSON.stringify(response));
-  } else if (req.url == "/complaint") {
-    response = {
-      options: applicationTypes.complaint,
-      form: serverFormS.complaint,
-    };
-    res.write(JSON.stringify(response));
-  } else if (req.url == "/sign") {
-    response = {
-      options: applicationTypes.sign,
-      form: serverFormS.sign,
-    };
-    res.write(JSON.stringify(response));
-  } else if (req.url == "/trade") {
-    response = {
-      options: applicationTypes.trade,
-      form: serverFormS.trade,
-    };
-    res.write(JSON.stringify(response));
-  } else if (req.url == "/construction/projection") {
-    response = serverFormS.construction.planningPermission;
-    res.write(JSON.stringify(response));
-  } else if (req.url == "/construction/construct") {
-    response = serverFormS.construction.constructionPermission;
-    res.write(JSON.stringify(response));
-  } else if (req.url == "/sendvalues") {
-    const arrResponse = JSON.parse(idWithValues);
-    arrForPDF = arrResponse;
-    response = "Ваша заявка принята";
-    res.write(JSON.stringify(response));
-  } else {
-    response = { status: "error", message: "NOT FOUND" };
-    res.write(JSON.stringify(response));
-  }
-  console.log(JSON.stringify(response));
+let response = {};
 
-  res.send();
-  res.end();
+app.get("/construction", function (req, res) {
+  res.json(applicationTypes.construction);
+});
+app.get("/complaint", function (req, res) {
+  res.json(["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"]);
+});
+app.get("/sign", function (req, res) {
+  res.json(["--Выберите раздел--", "разрешение на установку знака"]);
+});
+app.get("/trade", function (req, res) {
+  res.json([
+    "--Выберите раздел--",
+    "продажа пирожков",
+    "продажа цветов",
+    "продажа игрушек",
+    "продажа продуктов",
+  ]);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.listen(8080, function (req, res) {
+  console.log("Server is running at port 8080");
+
 });
