@@ -61,23 +61,16 @@ select.addEventListener("change", (e) => {
       console.log(jsonParsed);
       newFormDom(jsonParsed);
     }
-    let arrId = [];
-    let arrIdValue = [];
-    let idWithValues = {};
+
+    let idWithValues = {}; // {mun: "Balti", idnp: "2002004092146", ...}
     const button = document.getElementById("btnSend");
     button.addEventListener("click", () => {
       for (let i = 0; i < jsonParsed.length; i++) {
         const jsonId = jsonParsed[i].id;
-        arrId.push(jsonId);
-        const inputById = document.getElementById(arrId[i]);
-        arrIdValue.push(inputById.value);
-        idWithValues[arrId[i]] = arrIdValue[i];
+        const inputById = document.getElementById(jsonId);
+        idWithValues[jsonId] = inputById.value;
       }
-      console.log(idWithValues);
-      console.log(arrId);
-      console.log(typeof arrId);
-      console.log(arrIdValue);
-      console.log(typeof arrIdValue);
+
       const response = JSON.response;
       sendIdValues(idWithValues, (response) => {
         alert(response);
