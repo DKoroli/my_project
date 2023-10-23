@@ -1,8 +1,7 @@
 const express = require("express");
 var cors = require("cors");
 const app = express();
-// app.use(cors());
-
+// app.use(cors())
 const applicationTypes = {
   construction: [
     { text: "--Выберите раздел--", value: "empty" },
@@ -154,4 +153,5 @@ app.get("/trade", function (req, res) {
 
 app.listen(8080, function (req, res) {
   console.log("Server is running at port 8080");
+
 });
