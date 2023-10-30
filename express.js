@@ -17,6 +17,12 @@ app.get("/sign", function (req, res) {
 app.get("/trade", function (req, res) {
   res.json(data.applicationTypes.trade);
 });
+app.get("/construction/projection", function (req, res) {
+  res.json(data.serverFormS.construction.planningPermission);
+});
+app.get("/construction/construct", function (req, res) {
+  res.json(data.serverFormS.construction.constructionPermission);
+});
 
 app.listen(8080, function (req, res) {
   console.log("Server is running at port 8080");
