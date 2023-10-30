@@ -6,14 +6,22 @@ exports.applicationTypes = {
     { text: "Проектирование", value: "projection" },
     { text: "Строительство", value: "construct" },
   ],
-  complaint: ["--Выберите раздел--", "жалоба на соседа", "жалоба на полицию"],
-  sign: ["--Выберите раздел--", "разрешение на установку знака"],
+  complaint: [
+    { text: "--Выберите раздел--", value: "empty" },
+    { text: "жалоба на соседа", value: "neighbour_complaint" },
+    { text: "жалоба на полицию", value: "police_complaint" },
+  ],
+  sign: [
+    { text: "--Выберите раздел--", value: "empty" },
+    { text: "разрешение на установку знака", value: "sign_perm" },
+    { text: "согласование для установки знака", value: "sign_apr" },
+  ],
   trade: [
-    "--Выберите раздел--",
-    "продажа пирожков",
-    "продажа цветов",
-    "продажа игрушек",
-    "продажа продуктов",
+    { text: "--Выберите раздел--", value: "empty" },
+    { text: "продажа пирожков", value: "patty" },
+    { text: "продажа цветов", value: "flowers" },
+    { text: "продажа игрушек", value: "toys" },
+    { text: "продажа продуктов", value: "food" },
   ],
 };
 

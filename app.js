@@ -5,35 +5,31 @@ select.addEventListener("change", (e) => {
   if (subCutDiv) {
     subCutDiv.remove();
   }
-  let formData;
+
   if (e.target.value == "construction") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/construction", false);
     xhr.send();
     const jsonParsed = JSON.parse(xhr.response);
     addDomForSubcat(jsonParsed);
-    formData = jsonParsed.form;
   } else if (e.target.value == "complaint") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/complaint", false);
     xhr.send();
     const jsonParsed = JSON.parse(xhr.response);
-    addDomForSubcat(jsonParsed.options);
-    formData = jsonParsed.form;
+    addDomForSubcat(jsonParsed);
   } else if (e.target.value == "sign") {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/sign", false);
     xhr.send();
     const jsonParsed = JSON.parse(xhr.response);
-    addDomForSubcat(jsonParsed.options);
-    formData = jsonParsed.form;
+    addDomForSubcat(jsonParsed);
   } else {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", "http://127.0.0.1:8080/trade", false);
     xhr.send();
     const jsonParsed = JSON.parse(xhr.response);
-    addDomForSubcat(jsonParsed.options);
-    formData = jsonParsed.form;
+    addDomForSubcat(jsonParsed);
   }
   const form_div = document.getElementById("form_div");
   if (form_div) {
