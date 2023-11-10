@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const data = require("./static_data/data");
+const bodyParser = require("body-parser");
 
 const app = express();
+const jsonParser = bodyParser.json();
 app.use(cors());
 
 app.get("/construction", function (req, res) {
@@ -22,6 +24,13 @@ app.get("/construction/projection", function (req, res) {
 });
 app.get("/construction/construct", function (req, res) {
   res.json(data.serverFormS.construction.constructionPermission);
+});
+
+app.post("/sendvalues", jsonParser, function (req, res) {
+  const values = req.body;
+  res.json("Ваша заявка принята.");
+  console.log("Here is your array.");
+  console.log(values);
 });
 
 app.listen(8080, function (req, res) {
