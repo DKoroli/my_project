@@ -66,11 +66,15 @@ select.addEventListener("change", (e) => {
         const inputById = document.getElementById(jsonId);
         idWithValues[jsonId] = inputById.value;
       }
-
       const response = JSON.response;
       sendIdValues(idWithValues, (response) => {
         alert(response);
       });
+      const form_div = document.getElementById("form_div");
+      const subCutDiv = document.getElementById("select_div");
+      if (form_div || subCutDiv) {
+        document.location.reload();
+      }
     });
   });
 });
