@@ -1,0 +1,39 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#modal_window {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  padding: 0;
+  margin: 0;
+}
+
+.message_window {
+  /* width: 30%;
+  height: 30%; */
+  width: 400px;
+  height: 250px;
+  background-color: white;
+  position: relative;
+  top: 150px;
+  margin: auto;
+}
+
+.button {
+  font-weight: bold;
+  color: black;
+  position: absolute;
+  top: 2%;
+  left: 93%;
+}
+
+.modal_text {
+  top: 13%;
+  position: absolute;
+  margin: auto;
+}
