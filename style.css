@@ -27,13 +27,12 @@ body {
 .button {
   font-weight: bold;
   color: black;
-  position: absolute;
+  position: relative;
   top: 2%;
   left: 93%;
 }
 
 .modal_text {
-  top: 13%;
-  position: absolute;
-  margin: auto;
+  position: relative;
+  padding-left: 2px;
 }
