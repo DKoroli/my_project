@@ -13,8 +13,6 @@ body {
 }
 
 .message_window {
-  /* width: 30%;
-  height: 30%; */
   width: 400px;
   height: 250px;
   background-color: white;
@@ -22,12 +20,18 @@ body {
   top: 150px;
   margin: auto;
   overflow: auto;
+  border: 1px solid black;
+  border-radius: 10px 10px 0 0;
+}
+
+.message_window::-webkit-scrollbar {
+  width: 1px;
 }
 
 .button {
   font-weight: bold;
   color: black;
-  position: relative;
+  position: sticky;
   top: 2%;
   left: 93%;
 }
@@ -36,4 +40,7 @@ body {
   position: relative;
   padding-left: 10px;
   top: 10px;
+  padding-right: 10px;
+  text-align: justify;
+  max-width: 370px;
 }
