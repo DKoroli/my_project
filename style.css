@@ -19,12 +19,11 @@ body {
   position: relative;
   top: 150px;
   margin: auto;
-  overflow: auto;
   border: 1px solid black;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px;
 }
 
-.message_window::-webkit-scrollbar {
+.text_window::-webkit-scrollbar {
   width: 1px;
 }
 
@@ -32,15 +31,19 @@ body {
   font-weight: bold;
   color: black;
   position: sticky;
-  top: 2%;
-  left: 93%;
+  top: 17%;
+  left: 64%;
+}
+
+.text_window {
+  max-width: 350px;
+  max-height: 200px;
+  overflow: overlay;
+  left: 25px;
+  top: 10px;
+  position: relative;
 }
 
 .modal_text {
-  position: relative;
-  padding-left: 10px;
-  top: 10px;
-  padding-right: 10px;
   text-align: justify;
-  max-width: 370px;
 }
