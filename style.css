@@ -10,6 +10,12 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  display: none;
+}
+
+#button_for_modal {
+  background-color: red;
+  color: blue;
 }
 
 .message_window {

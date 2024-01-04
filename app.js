@@ -79,6 +79,18 @@ select.addEventListener("change", (e) => {
   });
 });
 
+// const button_for_modal = document.getElementById("button_for_modal");
+// button_for_modal.addEventListener("onclick", (e) => {
+//   const modal_window = document.getElementById("modal_window");
+//   modal_window.style.display = "block";
+// });
+
+const button_for_modal = document.getElementById("button_for_modal");
+button_for_modal.onclick = function () {
+  const modal_window = document.getElementById("modal_window");
+  modal_window.style.display = "block";
+};
+
 function addSelectForSubcat(arg) {
   const select = document.createElement("select");
   select.id = "addedSel";
