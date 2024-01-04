@@ -33,7 +33,7 @@ body {
   width: 1px;
 }
 
-.button {
+#button {
   font-weight: bold;
   color: black;
   position: relative;

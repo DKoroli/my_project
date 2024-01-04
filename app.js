@@ -83,7 +83,7 @@ const button_for_modal = document.getElementById("button_for_modal");
 const modal_window = document.getElementById("modal_window");
 button_for_modal.addEventListener("click", function () {
   modal_window.style.display = "block";
-  const button_to_close = document.querySelector("button");
+  const button_to_close = document.getElementById("button");
   button_to_close.onclick = function () {
     modal_window.style.display = "none";
   };
