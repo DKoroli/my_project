@@ -1,22 +1,17 @@
-function getMinFromArray(arr) {
-  let intermediate = {
-    minValue: arr[0],
-    minIndex: 0,
-  };
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] < intermediate.minValue) {
-      intermediate.minValue = arr[i];
-      intermediate.minIndex = i;
+let numbers = [1, 4, -75, 3, 0, 15, 33, -2];
+let temp;
+let zer = 1;
+let check = true;
+while (check) {
+  check = false;
+  for (let i = 0; i < numbers.length - zer; i++) {
+    if (numbers[i] > numbers[i + 1]) {
+      temp = numbers[i + 1];
+      numbers[i + 1] = numbers[i];
+      numbers[i] = temp;
+      check = true;
     }
   }
-  return intermediate;
+  zer++;
 }
-
-let numbers = [1, 4, 3, -2];
-let result = [];
-while (numbers.length > 0) {
-  const source = getMinFromArray(numbers);
-  result.push(source.minValue);
-  numbers.splice(source.minIndex, 1);
-}
-console.log(result);
+console.log(numbers);
