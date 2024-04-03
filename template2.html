@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML CSS JS</title>
+    <style>
+      #main {
+        /* background: lightblue; */
+        text-align: center;
+        font-weight: bolder;
+        text-transform: uppercase;
+        font-size: 22px;
+        padding-top: 50px;
+        /* padding-left: 70px; */
+        /* margin-left: 70px; */
+        left: 70px;
+      }
+      #text {
+        padding-top: 30px;
+        text-align: justify;
+        left: 70px;
+        /* margin-left: 60px; */
+        margin: auto;
+        width: 190mm; 
+        text-indent: 3em;
+        /* background: lightgreen; */
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body style="font: 'Times new roman';">
+    <div style="width: 210mm; height: 297mm; margin-left: 60px;">
+      <div style="text-align: right; font-weight: bolder; font-size: 20px; padding-left: 50px; padding-top: 50px;">
+        Примару мун. Бэлць
+      </div>
+      <div id="main">
+        Заявление<br />
+        о выдаче градостроительного сертификата<br />
+        для проектирования
+        </div>
+        <div id="text">
+          <p>Нижеподписавшийся, {{ users.name }},
+        IDNP/IDNO {{ users.idnp }},
+      проживающий/находящийся в районе/муниципии/городе/коммуне/селе {{ users.mun }} 
+      ул. {{ users.str }}, № {{ users.num }}, кв. {{ users.ap }}, контактный телефон 
+       {{ users.tel }}, адрес электронной почты {{ users.email }},
+       в соответствии с положениями Закона о разрешении выполнения строительных работ № 
+      163 от 09.07.2010 прошу выдать мне градостроительный сертификат для проектирования 
+        на объект недвижимости/участок с кадастровым номером {{ users.cad }}, 
+    расположенный в муниципии {{ users.obmun }}, 
+        ул. {{ users.obstr}}, № {{ users.obnum}}, кв. {{ users.obap }}.</p>
+
+    <p>Градостроительный сертификат для проектирования необходим для проектирования {{ users.object }}.
+    Площадь объекта недвижимости/участка, для которого запрашивается градостроительный сертификат для проектирования составляет {{ users.obyardage }} кв.м.</p>
+    <p> Заявляю под личную ответственность о достоверности указанных в настоящем заявлении данных.</p>
+
+
+    <p style="font-size: 20px; font-weight: bolder; ">Дата {{ users.date }}</p>
+
+
+    <p>Опись приложенных к заявлению документов:</p>
+    <p style="font-style: italic;">а) Удостоверение личности - для физических лиц или свидетельство о регистрации для юридических лиц (копия);</p>
+    <p style="font-style: italic;">b) отчет технической экспертизы, выполненный аттестованными техническими экспертами - в случае реконструкции, реставрации, изменения или усиления существующего объекта недвижимости (копия).</p>
+        </div>
+      </div>
+  </body>
+</html>
