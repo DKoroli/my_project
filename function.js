@@ -11,9 +11,9 @@ function myPDF(input) {
     const document = {
         html: html,
         data: {
-          users: values,
+          users: input,
         },
-        path: "./output3.pdf",
+        path: "./output.pdf",
         type: "",
       };
 
